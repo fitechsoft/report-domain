@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Created by chun on 16/8/26.
  */
-public class FRReport extends FDEntity {
+public class FRReportRow extends FDEntity {
 
     @OneToMany
     @Cascade(CascadeType.ALL)
-    private List<FRField> fields;
+    private List<FRReportField> fields;
 
 }
