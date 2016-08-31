@@ -15,20 +15,20 @@ public class FRReportESTA extends FRReportTemplate {
     public FRReportESTA(String accountName, Date createDate, String accountBalance) {
         super(TEMPLATE_ESTA);
 
-        fieldAccountName = new AccountNameField(accountName);
+        this.accountName = new AccountNameField(accountName);
         this.createDate = new DateField(createDate);
     }
 
-    public AccountNameField getFieldAccountName() {
-        return fieldAccountName;
+    public AccountNameField getAccountName() {
+        return accountName;
     }
 
-    public void setFieldAccountName(AccountNameField fieldAccountName) {
-        this.fieldAccountName = fieldAccountName;
+    public void setAccountName(AccountNameField accountName) {
+        this.accountName = accountName;
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    private AccountNameField fieldAccountName;
+    private AccountNameField accountName;
 
 
     public DateField getCreateDate() {
