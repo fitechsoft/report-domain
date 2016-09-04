@@ -8,39 +8,41 @@ import java.util.Date;
  */
 @Entity
 public class FRReportESTA extends FRReportTemplate {
-
-    public static final String TEMPLATE_ESTA = "ESTA";
-
-
-    public FRReportESTA(String accountName, Date createDate, String accountBalance) {
-        super(TEMPLATE_ESTA);
-
-        this.accountName = new AccountNameField(accountName);
-        this.createDate = new DateField(createDate);
+    public FRReportESTA(String name) {
+        super(name);
     }
-
-    public AccountNameField getAccountName() {
-        return accountName;
-    }
-
-    public void setAccountName(AccountNameField accountName) {
-        this.accountName = accountName;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private AccountNameField accountName;
-
-
-    public DateField getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(DateField createDate) {
-        this.createDate = createDate;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private DateField createDate;
+//    public static final String TEMPLATE_ESTA = "ESTA";
+//
+//
+//    public FRReportESTA(String accountName, Date createDate, String accountBalance) {
+//        super(TEMPLATE_ESTA);
+//
+//        this.accountName = new AccountNameField(accountName);
+//        this.createDate = new DateField(createDate);
+//    }
+//
+//    public AccountNameField getAccountName() {
+//        return accountName;
+//    }
+//
+//    public void setAccountName(AccountNameField accountName) {
+//        this.accountName = accountName;
+//    }
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private AccountNameField accountName;
+//
+//
+//    public DateField getCreateDate() {
+//        return createDate;
+//    }
+//
+//    public void setCreateDate(DateField createDate) {
+//        this.createDate = createDate;
+//    }
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private DateField createDate;
 
 
 //    @Override

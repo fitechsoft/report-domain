@@ -10,8 +10,8 @@ public class AccountNameField extends FRReportField<String> {
 
     public static final String FIELD_ACCOUNTNAME = "户名";
 
-    public AccountNameField(String accountName){
-        super();
+    public AccountNameField(String name, String accountName){
+        super(name);
         super.setFieldName(FIELD_ACCOUNTNAME);
         super.setFieldValue(accountName);
     }

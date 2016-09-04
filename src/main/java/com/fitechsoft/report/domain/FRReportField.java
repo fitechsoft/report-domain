@@ -1,22 +1,33 @@
 package com.fitechsoft.report.domain;
 
-import com.fitechsoft.domain.core.FDEntity;
 import com.fitechsoft.domain.core.FDObject;
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import java.util.Date;
 
 /**
  * Created by chun on 16/8/26.
  */
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class FRReportField<T> extends FDObject {
+public class FRReportField<T> extends FDObject implements Cloneable {
+
 
     private String fieldName;
+
+    public FRSqlType getSqlType() {
+        return sqlType;
+    }
+
+    public void setSqlType(FRSqlType sqlType) {
+        this.sqlType = sqlType;
+    }
+
+    private FRSqlType sqlType;
+
+
+    public FRReportField(String name) {
+        this.fieldName = name;
+    }
 
     public String getFieldName() {
         return fieldName;
@@ -34,18 +45,26 @@ public class FRReportField<T> extends FDObject {
         this.fieldValue = fieldValue;
     }
 
-//    @Any(metaColumn = @Column(name = "field_type"))
-//    @Cascade(CascadeType.ALL)
-//    @AnyMetaDef(
-//            idType = "long",
-//            metaType = "string",
-//            metaValues = {
-//                    @MetaValue(value = "Integer", targetEntity = Integer.class),
-//                    @MetaValue(value = "String", targetEntity = String.class),
-//                    @MetaValue(value = "Double", targetEntity = Double.class),
-//                    @MetaValue(value = "Date", targetEntity = Date.class)
-//            })
-//    @JoinColumn(name="FIELDVALUE_ID")
     private T fieldValue;
+
+
+    @Override
+    protected FRReportField<T> clone() throws CloneNotSupportedException {
+        FRReportField<T> newField = (FRReportField<T>) super.clone();
+
+
+        try {
+            newField.setFieldValue((T)newField.getSqlType().getDefaultLangObject());
+
+        } catch (Exception e) {
+            return null;
+        }
+        return newField;
+
+    }
+
+    public void setFieldValueWithString(String stringValue) {
+        setFieldValue((T) getSqlType().getLangObject(stringValue));
+    }
 
 }

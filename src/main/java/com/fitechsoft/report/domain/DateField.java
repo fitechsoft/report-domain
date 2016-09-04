@@ -11,8 +11,8 @@ public class DateField extends FRReportField<Date> {
 
     public static final String FIELD_DATE = "日期";
 
-    public DateField(Date date){
-        super();
+    public DateField(String name, Date date){
+        super(name);
         super.setFieldName(FIELD_DATE);
         super.setFieldValue(date);
     }
